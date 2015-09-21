@@ -1,6 +1,0 @@
-C:\Users\Jeffrey\Documents\BlackSwan\BlackSwan\BlackSwan.Console\bin\Debug\BlackSwan.Console.exe.config
-C:\Users\Jeffrey\Documents\BlackSwan\BlackSwan\BlackSwan.Console\bin\Debug\BlackSwan.Console.exe
-C:\Users\Jeffrey\Documents\BlackSwan\BlackSwan\BlackSwan.Console\bin\Debug\BlackSwan.Console.pdb
-C:\Users\Jeffrey\Documents\BlackSwan\BlackSwan\BlackSwan.Console\obj\Debug\BlackSwan.Console.csprojResolveAssemblyReference.cache
-C:\Users\Jeffrey\Documents\BlackSwan\BlackSwan\BlackSwan.Console\obj\Debug\BlackSwan.Console.exe
-C:\Users\Jeffrey\Documents\BlackSwan\BlackSwan\BlackSwan.Console\obj\Debug\BlackSwan.Console.pdb

@@ -10,6 +10,7 @@ namespace BlackSwan.Console
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

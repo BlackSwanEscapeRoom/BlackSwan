@@ -5,7 +5,14 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackSwan.Console", "BlackSwan.Console\BlackSwan.Console.csproj", "{957165EF-94F9-4EAE-B376-0AA9191ECBDD}"
 EndProject
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackSwan.Communication", "BlackSwan.Communication\BlackSwan.Communication.csproj", "{B0694F2C-D702-45A4-AA62-EFF8B89EBACF}"
+
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlackSwan.Arduino", "BlackSwan.Arduino", "{18E88751-C9EB-4992-B852-F4402C9CC19D}"
+	ProjectSection(SolutionItems) = preProject
+		BlackSwan.Arduino\WebserverArduino.ino = BlackSwan.Arduino\WebserverArduino.ino
+	EndProjectSection
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

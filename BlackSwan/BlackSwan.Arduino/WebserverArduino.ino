@@ -89,7 +89,7 @@ String handleRequest(String method, String path){
 }
 
 void loop(){
-  digitalWrite(13,LOW);
+	pinMode(13, OUTPUT)
   // listen for incoming clients
   EthernetClient client = server.available();
   if (client) {

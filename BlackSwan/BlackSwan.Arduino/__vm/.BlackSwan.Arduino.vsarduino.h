@@ -84,5 +84,4 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <BlackSwan.Arduino.ino>
-#include <Header.h>
 #endif

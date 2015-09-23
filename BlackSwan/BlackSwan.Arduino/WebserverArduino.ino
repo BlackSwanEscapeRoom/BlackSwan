@@ -19,20 +19,27 @@
 
 #include <SPI.h>
 #include <Ethernet.h>
+#include <string.h>
+
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
+
+
 IPAddress ip(192, 168, 1, 177);
 
 // Initialize the Ethernet server library
 // with the IP address and port you want to use
 // (port 80 is default for HTTP):
 EthernetServer server(80);
-
+bool led = false;
+    
 void setup() {
+    pinMode(13,OUTPUT);
+
   // Open serial communications and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
@@ -47,18 +54,76 @@ void setup() {
   Serial.println(Ethernet.localIP());
 }
 
+String handleMeta(){
+  return "handleMetaFunctie";
+}
 
-void loop() {
+String handleSensor(){
+  return "handleSensorFucntie";
+}
+
+String handleRequest(String method, String path){
+
+  if(method == "GET"){
+      if(path == "/meta"){
+        return handleMeta();
+      }
+      else if(path == "/sensor/switch"){
+          return handleSensor();
+      }
+  }
+  else if(method == "POST"){
+    if(path == "/actions/led/1"){
+      led = true;
+      return "AAN";
+      //delay();
+    }
+    else if(path == "/actions/led/0"){
+        led = false;
+       return "UIT";
+    }
+    return "";
+  }
+  
+  return  "error" + method + path;
+}
+
+void loop(){
+  digitalWrite(13,LOW);
   // listen for incoming clients
   EthernetClient client = server.available();
   if (client) {
     Serial.println("new client");
+    String test = String();
+    String method = String();
+    String path = String();
+ 
     // an http request ends with a blank line
     boolean currentLineIsBlank = true;
+    boolean methodIsSet = false;
+    boolean pathIsSet = true;
+    
+    int spaceCount = 0;
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
         Serial.write(c);
+        test.concat(c);        
+        if(c == ' '){
+          spaceCount++;
+        }
+        else{
+          switch(spaceCount){
+            case 0:
+              method.concat(c);
+              break;
+            case 1:
+              path.concat(c);
+              break;
+          }
+        }
+          
+     
         // if you've gotten to the end of the line (received a newline
         // character) and the line is blank, the http request has ended,
         // so you can send a reply
@@ -66,10 +131,18 @@ void loop() {
           // send a standard http response header
           client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
-          client.println("Connection: close");  // the connection will be closed after completion of the response
-          //client.println("Refresh: 5");  // refresh the page automatically every 5 sec
+          client.println("Connection: close");  
+          // the connection will be closed after completion of the response
           client.println();
-          client.println(Ethernet.localIP());
+          //set method and path
+          
+
+          //String path = ;
+          test = "";
+    
+          //handle reqeuest open on screen
+          client.println(handleRequest(method,path));
+          Serial.println(method + path);
           break;
         }
         if (c == '\n') {
@@ -81,6 +154,8 @@ void loop() {
         }
       }
     }
+
+    
     // give the web browser time to receive the data
     delay(1);
     // close the connection:
@@ -89,5 +164,6 @@ void loop() {
     Ethernet.maintain();
   }
 }
+
 
 

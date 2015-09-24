@@ -2,7 +2,7 @@
 
 class WebServer{
 private:
-  static String _httpRequest, _method, _path;
+  static String _method, _path;
   static int _spaceCount;
   static int _backslashCount;
  

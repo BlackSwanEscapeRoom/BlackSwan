@@ -2,8 +2,10 @@
 #include <Ethernet.h>
 #include <string.h>
 #include "WebServer.h"
+#include "BlackSwan.h"
 
-  String WebServer::_httpRequest = "", WebServer::_method = "", WebServer::_path = "";
+
+  String  WebServer::_method = "", WebServer::_path = "";
   int WebServer::_spaceCount = 0;
   int WebServer::_backslashCount = 0;
   //bool WebServer::ledIsOn;
@@ -37,8 +39,8 @@
         }
       }
 
-      _method = "";
-      _path = "";
+    _method = "";
+    _path = "";
       WebServer::_spaceCount = 0;
       WebServer::_backslashCount = 0;
       // give the web browser time to receive the data
@@ -52,8 +54,7 @@
 
 
   void WebServer::splitIntoHeaders(char c){
-    Serial.print(c);
-    _httpRequest.concat(c);
+    //_httpRequest.concat(c);
     if (c == ' '){
       _spaceCount++;
     }
@@ -78,7 +79,7 @@
     client.println("Connection: close");
     // the connection will be closed after completion of the response
     client.println();
-
+    Serial.println("regel 82: " + _method + _path);
     //handle reqeuest open on screen
     client.println(splitUrl(_method, _path));
 
@@ -100,7 +101,9 @@
     }
     else if (method == "POST"){
       if (category == "/component"){
-     
+        Component c = BlackSwan::GetComponent(component);
+        Serial.println("value :" + value);
+        c.Set(value == "/1" ? 1 : 0);
       }
     }
 
@@ -131,10 +134,10 @@
         break;
       }
     }
-
+    Serial.println("regel 137: " + method + path);
     handleRequest(method, category, component, value);
 
-    return "IS DIT WAT HIJ TERUG GEEFT " + method + path;
+    return "Hi: " + method + path;
     
   };
 

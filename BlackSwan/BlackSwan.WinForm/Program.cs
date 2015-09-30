@@ -10,6 +10,8 @@ namespace BlackSwan.WinForm
     {
         public static ComponentsPanel ComponentsPanel;
 
+        public static List<Component> Components = new List<Component>();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

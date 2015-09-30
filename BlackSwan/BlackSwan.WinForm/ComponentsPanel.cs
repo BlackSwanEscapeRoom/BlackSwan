@@ -49,14 +49,16 @@ namespace BlackSwan.WinForm
             var response = await client.GetStringAsync("/meta");
             var arduino = JsonConvert.DeserializeObject<Arduino>(response);
 
-            foreach (var item in arduino.Components)
-            {
-                componentsView.Items.Add(item.Name);
-            }
+            Program.Components.AddRange(arduino.Components);
+            UpdateComponentsView();
+        }
 
-            ComponentChange("Connected" + Environment.NewLine +
-                "Message send" + Environment.NewLine +
-                "Host: " + ip);
+        private void UpdateComponentsView()
+        {
+            foreach (var item in Program.Components)
+            {
+                componentsView.Items.Add(item.Name.TrimStart('/'));
+            }
         }
     }
 }

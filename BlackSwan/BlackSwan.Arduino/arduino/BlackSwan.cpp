@@ -69,12 +69,12 @@ String BlackSwan::GetMeta(){
     Component c = _components[i];
     result += "{ \"name\": \"";
     result += c.Name;
-    result += "\", \"getable\": \"";
+    result += "\", \"getable\": ";
     result += String(((long)(*c.Get)) != 0);
-    result += "\", \"setable\": \"";
+    result += ", \"setable\": ";
     result += String(((long)(*c.Set)) != 0);
     
-    result += (i != _amountOfComponents - 1 ? "\"},": "\"}");  
+    result += (i != _amountOfComponents - 1 ? "},": "}");  
   }
   
   result += "]}";

@@ -19,7 +19,7 @@ namespace BlackSwan.WinForm
 
         private void TcpServerRun()
         {
-            TcpListener tcplistener = new TcpListener(IPAddress.Any, 80);
+            TcpListener tcplistener = new TcpListener(IPAddress.Any, 8080);
             tcplistener.Start();
             Program.ComponentsPanel.ComponentChange("Listening");
             while (true)

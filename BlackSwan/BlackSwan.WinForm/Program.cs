@@ -10,7 +10,7 @@ namespace BlackSwan.WinForm
     {
         public static ComponentsPanel ComponentsPanel;
 
-        public static List<Component> Components = new List<Component>();
+        public static List<Arduino> Arduinos = new List<Arduino>();
 
         /// <summary>
         /// The main entry point for the application.
@@ -22,6 +22,7 @@ namespace BlackSwan.WinForm
             Application.SetCompatibleTextRenderingDefault(false);
 
             ComponentsPanel = new ComponentsPanel();
+            
             Application.Run(ComponentsPanel);
         }
     }

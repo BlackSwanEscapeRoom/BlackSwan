@@ -41,6 +41,7 @@
             this.componentsView.Size = new System.Drawing.Size(379, 397);
             this.componentsView.TabIndex = 0;
             this.componentsView.UseCompatibleStateImageBehavior = false;
+            this.componentsView.DoubleClick += new System.EventHandler(this.componentsView_DoubleClick);
             // 
             // componentChanges
             // 

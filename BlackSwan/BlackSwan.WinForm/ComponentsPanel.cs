@@ -33,10 +33,7 @@ namespace BlackSwan.WinForm
         private void ComponentsPanel_Load(object sender, EventArgs e)
         {
             var cph = new ComponentChangeHandler();
-
-            componentChanges.Text += "Knopje 1 staat nu aan" + Environment.NewLine;
-            componentChanges.Text += "Knopje 1 staat nu uit" + Environment.NewLine;
-            componentChanges.Text += "Knopje 3 staat nu uit" + Environment.NewLine;
+            ipAddress.Text = "192.168.1.177";
         }
 
         private async void connectArduino_Click(object sender, EventArgs e)
@@ -49,15 +46,31 @@ namespace BlackSwan.WinForm
             var response = await client.GetStringAsync("/meta");
             var arduino = JsonConvert.DeserializeObject<Arduino>(response);
 
-            Program.Components.AddRange(arduino.Components);
+            if (Program.Arduinos.Any(a => a.Ip == ip))
+                return;
+
+            arduino.Ip = ip;            
+            Program.Arduinos.Add(arduino);
             UpdateComponentsView();
+        }
+
+        private void componentsView_DoubleClick(object sender, EventArgs e)
+        {
+            var componentInfo = new ComponentInfo();
+            componentInfo.Show(componentsView.SelectedItems[0].SubItems[0].Text);
         }
 
         private void UpdateComponentsView()
         {
-            foreach (var item in Program.Components)
+            componentsView.Items.Clear();
+            foreach (var arduino in Program.Arduinos)
             {
-                componentsView.Items.Add(item.Name.TrimStart('/'));
+                var group = new ListViewGroup(arduino.Ip);
+                foreach (var component in arduino.Components)
+                { 
+                    var item = new ListViewItem(component.Name.TrimStart('/'), group);
+                    componentsView.Items.Add(item);
+                } 
             }
         }
     }

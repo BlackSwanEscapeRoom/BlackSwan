@@ -9,7 +9,7 @@ namespace BlackSwan.WinForm
 {
     class Arduino
     {
-       // public IPAddress Ip { get; set; }
+        public string Ip { get; set; }
        // public int RoomNumber { get; set; }
         public IEnumerable<Component> Components { get; set; }
     }

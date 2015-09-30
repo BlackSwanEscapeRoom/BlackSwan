@@ -8,7 +8,7 @@ namespace BlackSwan.WinForm
 {
     class Component
     {
-        public int ArduinoId { get; set; }
+        public Arduino Arduino { get; set; }
         public string Name { get; set; }
         public int Value { get; set; }
     }

@@ -28,25 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.componentsView = new System.Windows.Forms.ListView();
+            this.componentChanges = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
-            // listView1
+            // componentsView
             // 
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(287, 445);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.componentsView.Location = new System.Drawing.Point(12, 12);
+            this.componentsView.Name = "componentsView";
+            this.componentsView.Size = new System.Drawing.Size(379, 445);
+            this.componentsView.TabIndex = 0;
+            this.componentsView.UseCompatibleStateImageBehavior = false;
+            // 
+            // componentChanges
+            // 
+            this.componentChanges.Location = new System.Drawing.Point(397, 12);
+            this.componentChanges.Name = "componentChanges";
+            this.componentChanges.Size = new System.Drawing.Size(389, 445);
+            this.componentChanges.TabIndex = 1;
+            this.componentChanges.Text = "";
             // 
             // ComponentsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(798, 469);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.componentChanges);
+            this.Controls.Add(this.componentsView);
             this.Name = "ComponentsPanel";
-            this.Text = "Form1";
+            this.Text = "Componenten paneel";
             this.Load += new System.EventHandler(this.ComponentsPanel_Load);
             this.ResumeLayout(false);
 
@@ -54,7 +64,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView componentsView;
+        private System.Windows.Forms.RichTextBox componentChanges;
     }
 }
 

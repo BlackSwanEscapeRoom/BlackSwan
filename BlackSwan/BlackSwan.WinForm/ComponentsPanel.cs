@@ -19,11 +19,27 @@ namespace BlackSwan.WinForm
 
         private void ComponentsPanel_Load(object sender, EventArgs e)
         {
-            listView1.Items.Add("test");
-            listView1.Items.Add("test2");
-            listView1.Items.Add("test3");
-            listView1.Items.Add("test4");
-            listView1.Items.Add("test5");
+            var cph = new ComponentChangeHandler();
+
+            componentsView.Items.Add("Led");
+            componentsView.Items.Add("Led 2");
+            componentsView.Items.Add("Led 3");
+            componentsView.Items.Add("Led 4");
+            componentsView.Items.Add("Led 5");
+
+            componentChanges.Text += "Knopje 1 staat nu aan" + Environment.NewLine;
+            componentChanges.Text += "Knopje 1 staat nu uit" + Environment.NewLine;
+            componentChanges.Text += "Knopje 3 staat nu uit" + Environment.NewLine;
+        }
+
+        public void ComponentChange(string s)
+        {
+            Func<int> del = delegate ()
+            {
+                componentChanges.AppendText(s + System.Environment.NewLine);
+                return 0;
+            };
+            Invoke(del);
         }
     }
 }

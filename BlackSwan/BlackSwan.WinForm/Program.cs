@@ -8,6 +8,8 @@ namespace BlackSwan.WinForm
 {
     static class Program
     {
+        public static ComponentsPanel ComponentsPanel;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +18,9 @@ namespace BlackSwan.WinForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ComponentsPanel());
+
+            ComponentsPanel = new ComponentsPanel();
+            Application.Run(ComponentsPanel);
         }
     }
 }

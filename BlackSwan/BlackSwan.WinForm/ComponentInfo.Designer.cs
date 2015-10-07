@@ -30,18 +30,19 @@
         {
             this.currentComponentValue = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.componentValue = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.setComponentValue = new System.Windows.Forms.Button();
+            this.componentValue = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // currentComponentValue
             // 
             this.currentComponentValue.Location = new System.Drawing.Point(12, 28);
             this.currentComponentValue.Name = "currentComponentValue";
+            this.currentComponentValue.ReadOnly = true;
             this.currentComponentValue.Size = new System.Drawing.Size(526, 22);
             this.currentComponentValue.TabIndex = 0;
-            this.currentComponentValue.Text = "";
+            this.currentComponentValue.Text = "Haaaalooo";
             // 
             // label1
             // 
@@ -51,13 +52,6 @@
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Huidige waarde";
-            // 
-            // componentValue
-            // 
-            this.componentValue.Location = new System.Drawing.Point(12, 86);
-            this.componentValue.Name = "componentValue";
-            this.componentValue.Size = new System.Drawing.Size(526, 20);
-            this.componentValue.TabIndex = 2;
             // 
             // label2
             // 
@@ -78,13 +72,20 @@
             this.setComponentValue.UseVisualStyleBackColor = true;
             this.setComponentValue.Click += new System.EventHandler(this.setComponentValue_Click);
             // 
+            // componentValue
+            // 
+            this.componentValue.Location = new System.Drawing.Point(12, 86);
+            this.componentValue.Name = "componentValue";
+            this.componentValue.Size = new System.Drawing.Size(526, 20);
+            this.componentValue.TabIndex = 4;
+            // 
             // ComponentInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 145);
-            this.Controls.Add(this.setComponentValue);
             this.Controls.Add(this.componentValue);
+            this.Controls.Add(this.setComponentValue);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.currentComponentValue);
@@ -99,8 +100,8 @@
 
         private System.Windows.Forms.RichTextBox currentComponentValue;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox componentValue;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button setComponentValue;
+        private System.Windows.Forms.TextBox componentValue;
     }
 }

@@ -19,7 +19,7 @@ namespace BlackSwan.WinForm
 
         private void TcpServerRun()
         {
-            TcpListener tcplistener = new TcpListener(IPAddress.Any, 8080);
+            TcpListener tcplistener = new TcpListener(IPAddress.Any, 9090);
             tcplistener.Start();
             Program.ComponentsPanel.ComponentChange("Listening");
             while (true)
@@ -33,30 +33,28 @@ namespace BlackSwan.WinForm
 
         private void tcpHandler(object client)
         {
-            TcpClient mclient = (TcpClient) client;
-            NetworkStream stream = mclient.GetStream();
-            byte[] message = new byte[1024];
+            var mclient = (TcpClient) client;
+            var stream = mclient.GetStream();
+            var message = new byte[1024];
             stream.Read(message, 0, message.Length);
 
             var request = Encoding.ASCII.GetString(message);
-            var parts = request.Split(' ');
+            var ipWithPort = (mclient.Client.RemoteEndPoint as IPEndPoint).ToString();
+            var ip = ipWithPort.Split(':')[0];
 
-            var partzero = parts[0];
-            var partone = parts[1];
-            var parttwo = parts[2];
-            var partthree = parts[3];
-            var partfour = parts[4];
-            Program.ComponentsPanel.ComponentChange("New message = " + partzero +
-                " " + partone +
-                " " + parttwo +
-                " " + partthree +
-                " " + partfour);
+            var lines = request.Split(new[] { "\r\n" }, StringSplitOptions.None);
+
+            if (lines[0] == "change")
+            {
+                ComponentCommunicator.UpdateComponentValue(ip, lines[1], int.Parse(lines[2]));
+            }
+            else if (lines[0] == "register")
+            {
+                ComponentCommunicator.ReadMetaAndRegisterArduino(lines[1], ip);
+            }
 
             stream.Close();
             mclient.Close();
         }
-
-        
-
     }
 }

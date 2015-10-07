@@ -14,7 +14,7 @@ namespace BlackSwan.WinForm
         public void Show(string name)
         {
             Show();
-            Text = string.Format("Informatie van component: {0}", name);
+            Text = $"Informatie van component: {name}";
         }
 
         private void setComponentValue_Click(object sender, EventArgs e)

@@ -14,7 +14,7 @@ namespace BlackSwan.WinForm
     {
         public static void RegisterArduino(string ip)
         {
-            ReadMetaAndRegisterArduino(SendTcpRequest(ip, "getmeta").First(), ip);
+            ReadMetaAndRegisterArduino(SendTcpRequest(ip, new[] { "getmeta" }).First(), ip);
         }
 
         public static void ReadMetaAndRegisterArduino(string meta, string ip)
@@ -26,7 +26,8 @@ namespace BlackSwan.WinForm
 
             arduino.Ip = ip;
             Program.Arduinos.Add(arduino);
-            Program.ComponentsPanel.Invoke(new Action(() => {
+            Program.ComponentsPanel.Invoke(new Action(() =>
+            {
                 Program.ComponentsPanel.UpdateComponentsView();
             }));
         }
@@ -38,34 +39,29 @@ namespace BlackSwan.WinForm
 
             if (arduino == null || component == null)
             {
-                ComponentCommunicator.RegisterArduino(ip.ToString());
+               // RegisterArduino(ip.ToString());
             }
 
-            // TODO: Send request
+            SendTcpRequest(arduino.Ip, new[] { "setcomponent", componentName, value.ToString() });
 
-            Program.ComponentsPanel.Invoke(new Action(() => {
+            Program.ComponentsPanel.Invoke(new Action(() =>
+            {
                 Program.ComponentsPanel.UpdateComponentsView();
             }));
         }
 
-        private static IEnumerable<string> SendTcpRequest(string ip, string command)
+        private static IEnumerable<string> SendTcpRequest(string ip, string[] command)
         {
-            using (TcpClient tc = new TcpClient())
+            using (TcpClient tc = new TcpClient(ip, 80))
             {
-                tc.Connect(ip, 9090);
+                var request = string.Join("\n", command) + "\n\n";
 
-                using (NetworkStream ns = tc.GetStream())
-                {
-                    using (StreamWriter sw = new StreamWriter(ns))
-                    {
-                        using (StreamReader sr = new StreamReader(ns))
-                        {
-                            sw.Write("getmeta");
-                            sw.Flush();
-                            return sr.ReadToEnd().Split(new[] {"\r\n"} , StringSplitOptions.None);
-                        }
-                    }
-                }
+                tc.Client.Send(Encoding.ASCII.GetBytes(request));
+
+                byte[] buf = new byte[1024];
+                var resp = tc.Client.Receive(buf);
+                var response = Encoding.UTF8.GetString(buf, 0, resp);
+                return response.Split(new[] { "\r\n" }, StringSplitOptions.None);
             }
         }
 

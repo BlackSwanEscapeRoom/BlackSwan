@@ -7,7 +7,8 @@ Component* _components = new Component[5];
 int _amountOfComponents = 0;
 bool _registeredToRemote = false;
 
-void BlackSwan::Init(int ipAdres[]) {
+void BlackSwan::Init(int ipAdres[]) 
+{
 	if (_amountOfComponents < 1) {
 		Serial.println("Warning: Register your components before calling BlackSwan::Init");
 	}
@@ -23,9 +24,8 @@ void BlackSwan::Init(int ipAdres[]) {
 	Serial.print("Server is running at ");
 	Serial.println(Ethernet.localIP());
 
-
-	EthernetClient webClientClient;
-	while (!WebClient::RegisterToRemote(webClientClient));
+  //EthernetClient webClientClient;
+  //while (!WebClient::RegisterToRemote(webClientClient));
 }
 
 void BlackSwan::Loop() {

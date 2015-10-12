@@ -18,11 +18,11 @@ void WebServer::Listen(EthernetClient client) {
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
-        requestPart += c;
 
         if (c == '\n' && currentLineIsBlank) {
           client.println(createResponseBody(requestParts));
-          client.println();
+          //client.println(requestParts[0]);
+          client.println();          
           break;
         }
         
@@ -32,9 +32,7 @@ void WebServer::Listen(EthernetClient client) {
           currentLineIsBlank = true;
         }
         else if (c != '\r') {
-          Serial.println("\\r");
-          Serial.println(request);
-          Serial.println();
+            requestPart += c;
           currentLineIsBlank = false;
         }
       }

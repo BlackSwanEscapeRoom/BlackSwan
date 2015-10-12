@@ -63,11 +63,5 @@ namespace BlackSwan.WinForm
             var componentInfo = new ComponentInfo();
             componentInfo.Show(componentsView.SelectedItems[0].SubItems[0].Text);
         }
-
-        private void Value_TextChanged(object sender, EventArgs e)
-        {
-            var componentInfo = new ComponentInfo();
-            componentInfo.Show(componentsView.SelectedItems[0].SubItems[0].Text);
-        }
     }
 }

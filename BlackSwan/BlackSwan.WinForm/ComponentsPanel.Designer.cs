@@ -32,8 +32,6 @@
             this.componentChanges = new System.Windows.Forms.RichTextBox();
             this.connectArduino = new System.Windows.Forms.Button();
             this.ipAddress = new System.Windows.Forms.TextBox();
-            this.Value = new System.Windows.Forms.TextBox();
-            this.valueComponent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // componentsView
@@ -70,30 +68,11 @@
             this.ipAddress.Size = new System.Drawing.Size(187, 20);
             this.ipAddress.TabIndex = 3;
             // 
-            // Value
-            // 
-            this.Value.Location = new System.Drawing.Point(418, 444);
-            this.Value.Name = "Value";
-            this.Value.Size = new System.Drawing.Size(187, 20);
-            this.Value.TabIndex = 4;
-            this.Value.TextChanged += new System.EventHandler(this.Value_TextChanged);
-            // 
-            // valueComponent
-            // 
-            this.valueComponent.Location = new System.Drawing.Point(611, 442);
-            this.valueComponent.Name = "valueComponent";
-            this.valueComponent.Size = new System.Drawing.Size(207, 23);
-            this.valueComponent.TabIndex = 5;
-            this.valueComponent.Text = "Aanpassen Waarde";
-            this.valueComponent.UseVisualStyleBackColor = true;
-            // 
             // ComponentsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 476);
-            this.Controls.Add(this.valueComponent);
-            this.Controls.Add(this.Value);
             this.Controls.Add(this.ipAddress);
             this.Controls.Add(this.connectArduino);
             this.Controls.Add(this.componentChanges);
@@ -112,8 +91,6 @@
         private System.Windows.Forms.Button connectArduino;
         private System.Windows.Forms.TextBox ipAddress;
         private System.Windows.Forms.RichTextBox componentChanges;
-        private System.Windows.Forms.TextBox Value;
-        private System.Windows.Forms.Button valueComponent;
     }
 }
 

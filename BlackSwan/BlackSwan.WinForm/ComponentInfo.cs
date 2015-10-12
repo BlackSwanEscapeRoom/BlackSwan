@@ -22,8 +22,7 @@ namespace BlackSwan.WinForm
             var componentName = Text;
             var value = componentValue.Text;
 
-           // var httpClient = new HttpClient();
-           // httpClient.BaseAddress = "";
+            ComponentCommunicator.UpdateComponentValue("192.168.1.177", "/led", int.Parse(value));
         }
     }
 }

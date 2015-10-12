@@ -61,8 +61,6 @@ namespace BlackSwan.TcpServer
 
             }
 
-
-
             stream.Close();
             mclient.Close();
         }
